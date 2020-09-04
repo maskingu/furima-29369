@@ -37,15 +37,13 @@ Things you may want to cover:
 | last_name         | string  | null: false |
 | first_name_kana   | string  | null: false |
 | last_name_kana    | string  | null: false |
-| birthday_year_id  | integer | null: false |
-| birthday_month_id | integer | null: false |
-| birthday_day_id   | integer | null: false |
+| birthday          | data    | null: false |
 
 ### Association
 
 - has_many :items
 - has_many :buys
- 
+
 ## items テーブル
 
 |  Column            |  Type     | Options                        |
@@ -53,24 +51,25 @@ Things you may want to cover:
 | image              | string    | null: false                    |
 | title              | string    | null: false                    |
 | text               | text      | null: false                    |
-| category           | string    | null: false                    |
-| status             | string    | null: false                    | 
+| category           | integer   | null: false                    |
+| status             | integer   | null: false                    | 
 | shipping_charge    | integer   | null: false                    |
-| shipping_region    | string    | null: false                    |
-| shippingdata       | string    | null: false                    |
+| shipping_region    | integer   | null: false                    |
+| shippingdata       | integer   | null: false                    |
 | price              | integer   | null: false                    |
 | user               |references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_one : buys
+- has_one : buy
 
 
 ## buys テーブル
 
 ### Association
 
+- belongs_to :user
 - belongs_to :item
 - has_one : deliveryaddress
 
@@ -83,12 +82,12 @@ Things you may want to cover:
 
 |  Column            |  Type      | Options                        |
 | ------------------ | ---------- | ------------------------------ |
-| postalcode         | integer    | null: false                    |
+| postalcode         | string     | null: false                    |
 | region             | string     | null: false                    |
 | city               | string     | null: false                    |
 | address            | string     | null: false                    |
 | building           | string     | null: false                    |
-| phone              | integer    | null: false                    |
+| phone              | string     | null: false                    |
 | buy_id             | references | null: false, foreign_key: true |
 
 ### Association
