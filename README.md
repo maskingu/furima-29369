@@ -82,13 +82,13 @@ Things you may want to cover:
 
 |  Column            |  Type      | Options                        |
 | ------------------ | ---------- | ------------------------------ |
-| postalcode         | string     | null: false                    |
-| region             | string     | null: false                    |
+| postalcode         | integer    | null: false                    |
+| region             | integer    | null: false                    |
 | city               | string     | null: false                    |
 | address            | string     | null: false                    |
 | building           | string     | null: false                    |
 | phone              | string     | null: false                    |
-| buy_id             | references | null: false, foreign_key: true |
+| buy                | references | null: false, foreign_key: true |
 
 ### Association
 
