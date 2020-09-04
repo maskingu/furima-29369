@@ -86,7 +86,7 @@ Things you may want to cover:
 | region             | integer    | null: false                    |
 | city               | string     | null: false                    |
 | address            | string     | null: false                    |
-| building           | string     | null: false                    |
+| building           | string     |                                |
 | phone              | string     | null: false                    |
 | buy                | references | null: false, foreign_key: true |
 
