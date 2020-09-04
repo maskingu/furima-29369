@@ -82,7 +82,7 @@ Things you may want to cover:
 
 |  Column            |  Type      | Options                        |
 | ------------------ | ---------- | ------------------------------ |
-| postalcode         | integer    | null: false                    |
+| postalcode         | string     | null: false                    |
 | region             | integer    | null: false                    |
 | city               | string     | null: false                    |
 | address            | string     | null: false                    |
