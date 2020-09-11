@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :shippingdata_id do
+  factory :shipping_date do
     
   end
 end
