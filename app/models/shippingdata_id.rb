@@ -1,0 +1,2 @@
+class ShippingdataId < ApplicationRecord
+end
