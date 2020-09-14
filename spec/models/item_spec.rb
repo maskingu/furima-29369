@@ -71,7 +71,7 @@ RSpec.describe Item, type: :model do
     end
 
     it '販売価格が決められた範囲外ならば保存できない' do
-      @item.price = 19999999
+      @item.price = 19_999_999
       @item.valid?
       expect(@item.errors.full_messages).to include('Price指定の範囲内で入力してください')
     end
