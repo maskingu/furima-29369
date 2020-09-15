@@ -32,6 +32,19 @@ class ItemsController < ApplicationController
   # end
   # 実装の順番間違えて先に記述してしまったので削除のアクションは一旦コメントアウトしてます
 
+  def edit
+    @item = Item.find(params[:id])
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+    redirect_to item_path
+    else
+      render :edit
+    end
+  end
+
   def calculate
     @item = Item.find(params[:id])
   end
