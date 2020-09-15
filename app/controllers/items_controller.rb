@@ -2,11 +2,15 @@ class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
 
   def index
-    @items = Item.all.order("created_at DESC")
+    @items = Item.all.order('created_at DESC')
   end
 
   def new
     @item = Item.new
+  end
+
+  def show
+    @item = Item.find(params[:id])
   end
 
   def create
@@ -17,6 +21,16 @@ class ItemsController < ApplicationController
       render :new
     end
   end
+
+  # def destroy
+  #   item = Item.find(params[:id])
+  #   if item.destroy
+  #     redirect_to root_path
+  #   else
+  #     render :show
+  #   end
+  # end
+  # 実装の順番間違えて先に記述してしまったので削除のアクションは一旦コメントアウトしてます
 
   def calculate
     @item = Item.find(params[:id])
