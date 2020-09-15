@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
+  before_action :set_item, only: [:show, :edit]  
 
   def index
     @items = Item.all.order('created_at DESC')
@@ -10,7 +11,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
   end
 
   def create
@@ -33,7 +33,6 @@ class ItemsController < ApplicationController
   # 実装の順番間違えて先に記述してしまったので削除のアクションは一旦コメントアウトしてます
 
   def edit
-    @item = Item.find(params[:id])
   end
 
   def update
@@ -45,17 +44,18 @@ class ItemsController < ApplicationController
     end
   end
 
-  def calculate
-    @item = Item.find(params[:id])
-  end
-
   private
 
   def item_params
     params.require(:item).permit(:image, :title, :text, :category_id, :status_id, :shipping_charge_id, :shipping_region_id, :shipping_date_id, :price).merge(user_id: current_user.id)
   end
 
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
   def move_to_index
     redirect_to user_session_path unless user_signed_in?
   end
+
 end
