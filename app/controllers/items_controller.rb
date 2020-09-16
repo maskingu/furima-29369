@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
-  before_action :set_item, only: [:show, :edit]
+  before_action :set_item, only: [:show, :edit, :destroy, :update]
 
   def index
     @items = Item.all.order('created_at DESC')
@@ -8,9 +8,6 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-  end
-
-  def show
   end
 
   def create
@@ -22,40 +19,41 @@ class ItemsController < ApplicationController
     end
   end
 
-  # def destroy
-  #   item = Item.find(params[:id])
-  #   if item.destroy
-  #     redirect_to root_path
-  #   else
-  #     render :show
-  #   end
-  # end
-  # 実装の順番間違えて先に記述してしまったので削除のアクションは一旦コメントアウトしてます
+  def destroy
+    if user_signed_in? && @item.user == current_user
+      @item.destroy
+      redirect_to root_path
+    else
+      render :show
+    end
+  end
 
   def edit
   end
 
   def update
-    item = Item.find(params[:id])
-    if user_signed_in? && item.user == current_user
-      item.update(item_params)
+    if user_signed_in? && @item.user == current_user
+      @item.update(@item_params)
       redirect_to item_path
     else
       render :show
     end
   end
 
-  private
-
-  def move_to_index
-    redirect_to user_session_path unless user_signed_in?
+  def show
   end
+end
 
-  def item_params
-    params.require(:item).permit(:image, :title, :text, :category_id, :status_id, :shipping_charge_id, :shipping_region_id, :shipping_date_id, :price).merge(user_id: current_user.id)
-  end
+private
 
-  def set_item
-    @item = Item.find(params[:id])
-  end
+def item_params
+  params.require(:item).permit(:image, :title, :text, :category_id, :status_id, :shipping_charge_id, :shipping_region_id, :shipping_date_id, :price).merge(user_id: current_user.id)
+end
+
+def move_to_index
+  redirect_to user_session_path unless user_signed_in?
+end
+
+def set_item
+  @item = Item.find(params[:id])
 end
