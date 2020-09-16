@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
-  before_action :set_item, only: [:show, :edit]
 
+  before_action :set_item, only: [:show, :edit, :destroy, :update]
+  
   def index
     @items = Item.all.order('created_at DESC')
   end
@@ -22,15 +23,15 @@ class ItemsController < ApplicationController
     end
   end
 
-  # def destroy
-  #   item = Item.find(params[:id])
-  #   if item.destroy
-  #     redirect_to root_path
-  #   else
-  #     render :show
-  #   end
-  # end
-  # 実装の順番間違えて先に記述してしまったので削除のアクションは一旦コメントアウトしてます
+  def destroy
+    @item = Item.find(params[:id])
+    if user_signed_in? && @item.user == current_user
+      @item.destroy
+      redirect_to root_path
+    else
+      render :show
+    end
+  end
 
   def edit
   end
@@ -59,3 +60,4 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 end
+
