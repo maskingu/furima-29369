@@ -23,7 +23,6 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item = Item.find(params[:id])
     if user_signed_in? && @item.user == current_user
       @item.destroy
       redirect_to root_path
@@ -36,9 +35,8 @@ class ItemsController < ApplicationController
   end
 
   def update
-    item = Item.find(params[:id])
-    if user_signed_in? && item.user == current_user
-      item.update(item_params)
+    if user_signed_in? && @item.user == current_user
+      @item.update(@item_params)
       redirect_to item_path
     else
       render :show
