@@ -36,7 +36,7 @@ class ItemsController < ApplicationController
 
   def update
     if user_signed_in? && @item.user == current_user
-      @item.update(@item_params)
+      @item.update(item_params)
       redirect_to item_path
     else
       render :show
@@ -61,6 +61,4 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
-
-
-
+end
