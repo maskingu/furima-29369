@@ -4,7 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable
 
   has_many :items
-
+  has_many :orders
+  
   validates :nickname, presence: true
 
   EMAIL_REGEX = /@+/.freeze
