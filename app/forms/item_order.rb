@@ -5,11 +5,9 @@ class ItemOrder
 
 
   with_options presence: true do
-    validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
+    validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "ハイフン(-)を使用してください"}
     validates :phone_number, numericality: { with: /\A\d{11}\z/, message: '11桁以内の数字を入力してください' }
-    validates :city, :house_number, :prefecture
-    validates :token
-
+    validates :city, :house_number, :prefecture, :user_id, :item_id, :token
   end
     
   def save
