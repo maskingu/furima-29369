@@ -10,9 +10,10 @@ class Item < ApplicationRecord
   belongs_to_active_hash :shipping_region
   belongs_to_active_hash :shipping_date
   belongs_to_active_hash :status
-
-  validates :image, :title, :text, :category, :status, :shipping_charge, :shipping_region, :shipping_date, :price, presence: true
-
-  validates :price, numericality: { with: /\A[0-9]+\z/, message: '半角数字を使用してください' }
-  validates_inclusion_of :price,  in: 300..9_999_999, message: '指定の範囲内で入力してください'
+  
+  with_options presence: true do
+    validates :image, :title, :text, :category, :status, :shipping_charge, :shipping_region, :shipping_date
+    validates :price, numericality: { with: /\A[0-9]+\z/, message: '半角数字を使用してください' }
+    validates_inclusion_of :price,  in: 300..9_999_999, message: '指定の範囲内で入力してください'
+  end
 end

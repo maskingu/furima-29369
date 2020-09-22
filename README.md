@@ -70,24 +70,24 @@ Things you may want to cover:
 
 - belongs_to :user
 - belongs_to :item
-- has_one    :deliveryaddress
+- has_one    :address
 
 |  Column            |  Type      | Options                        |
 | ------------------ | ---------- | ------------------------------ |
 | item               | references | null: false, foreign_key: true |
 | user               | references | null: false, foreign_key: true |
 
-## deliveryaddress
+## address
 
 |  Column            |  Type      | Options                        |
 | ------------------ | ---------- | ------------------------------ |
-| postalcode         | string     | null: false                    |
-| region             | integer    | null: false                    |
+| postal_code        | string     | null: false                    |
+| prefecture         | integer    | null: false                    |
 | city               | string     | null: false                    |
-| address            | string     | null: false                    |
-| building           | string     |                                |
-| phone              | string     | null: false                    |
-| order                | references | null: false, foreign_key: true |
+| house_number       | string     | null: false                    |
+| building_name      | string     |                                |
+| phone_number       | string     | null: false                    |
+| order              | references | null: false, foreign_key: true |
 
 ### Association
 
