@@ -23,7 +23,7 @@ RSpec.describe ItemOrder, type: :model do
     end
 
     it 'postal_codeが半角のハイフンを含んだ正しい形式でないと保存できないこと' do
-      @item_order.postal_code = 1234567
+      @item_order.postal_code = 1_234_567
       @item_order.valid?
       expect(@item_order.errors.full_messages).to include('Postal codeハイフン(-)を使用してください')
     end
@@ -35,24 +35,24 @@ RSpec.describe ItemOrder, type: :model do
     end
 
     it 'cityが空だと保存できないこと' do
-      @item_order.city = ""
+      @item_order.city = ''
       @item_order.valid?
       expect(@item_order.errors.full_messages).to include('Cityを入力してください')
     end
 
     it 'house_numberが空だと保存できないこと' do
-      @item_order.house_number = ""
+      @item_order.house_number = ''
       @item_order.valid?
       expect(@item_order.errors.full_messages).to include('House numberを入力してください')
     end
 
     it 'building_nameは空でも保存できること' do
-      @item_order.building_name = ""
+      @item_order.building_name = ''
       expect(@item_order).to be_valid
     end
 
     it 'phone_numberが空だと保存できないこと' do
-      @item_order.phone_number = ""
+      @item_order.phone_number = ''
       @item_order.valid?
       expect(@item_order.errors.full_messages).to include('Phone numberを入力してください')
     end
@@ -62,6 +62,5 @@ RSpec.describe ItemOrder, type: :model do
       @item_order.valid?
       expect(@item_order.errors.full_messages).to include('Phone number11桁以内の数字を入力してください')
     end
-
   end
 end

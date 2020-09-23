@@ -5,7 +5,7 @@ class User < ApplicationRecord
 
   has_many :items
   has_many :orders
-  
+
   with_options presence: true do
     validates :nickname
     EMAIL_REGEX = /@+/.freeze
