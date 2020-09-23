@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :move_to_signed_in
   before_action :move_to_index
+  before_action :move_to_index_buy
   before_action :order_item, only: [:index, :create]
 
   def index
@@ -34,6 +35,11 @@ class OrdersController < ApplicationController
   def move_to_index
     @item = Item.find(order_params[:item_id])
     redirect_to root_path if user_signed_in? && @item.user == current_user
+  end
+
+  def move_to_index_buy
+    @order = ItemOrder.new(order_params)
+    redirect_to root_path unless @order.user_id && current_user.id
   end
 
   def order_params
