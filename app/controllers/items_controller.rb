@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :move_to_index, except: [:index]
+  before_action :move_to_index, except: [:index, :new]
   before_action :set_item, only: [:show, :edit, :destroy, :update]
 
   def index
@@ -46,7 +46,7 @@ class ItemsController < ApplicationController
   private
 
   def move_to_index
-    redirect_to user_session_path unless user_signed_in?
+    redirect_to user_session_path if user_signed_in?
   end
 
   def item_params
