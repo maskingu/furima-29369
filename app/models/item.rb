@@ -16,4 +16,5 @@ class Item < ApplicationRecord
     validates :price, numericality: { with: /\A[0-9]+\z/, message: '半角数字を使用してください' }
     validates_inclusion_of :price,  in: 300..9_999_999, message: '指定の範囲内で入力してください'
   end
+  
 end
