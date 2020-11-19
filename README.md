@@ -17,7 +17,7 @@ Things you may want to cover:
 
 * How to run the test suite
 
-* Services
+*
 
 
 # テーブル設計
