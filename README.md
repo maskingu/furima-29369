@@ -15,8 +15,6 @@ Things you may want to cover:
 
 * Database initialization
 
-* How to run the test suite
-
 
 # テーブル設計
 
