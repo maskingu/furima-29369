@@ -13,7 +13,6 @@ Things you may want to cover:
 
 * Database creation
 
-* Database initialization
 
 
 # テーブル設計
